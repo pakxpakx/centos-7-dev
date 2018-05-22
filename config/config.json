@@ -1,0 +1,18 @@
+{
+  "AIR_IP": "10.0.0.22",
+  "AIR_PORT": "22",
+  "AIR_NAME": "admin",
+  "AIR_PWD": "admin_cc_c",
+  "AIR_FOLDER": "/home/admin",
+  "CUSTOMER": "CTBC",
+  "LicenseDir": "/home/admin/status",
+  "Serial": "ctbc-kxzf-vb1e-zzvd-31zm-bd66",
+  "NI":"auto",
+  "API_PARAMS" : "https://10.0.0.33:8009/paras",
+  "API_IPS" : "https://10.0.0.33:8009/ips",
+  "proxy_name":"proxy1",
+  "proxy_ip":"127.0.0.1",
+  "dbhost": "127.0.0.1",
+  "dbuser":"default_dbuser",
+  "dbpwd":"default_pwd"
+}
