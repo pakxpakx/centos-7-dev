@@ -5,13 +5,17 @@ RUN rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
 RUN yum install -y python-pip php56w php56w-fpm php56w-devel
 RUN yum -y groupinstall "Development tools"
 ADD mongodb-org-3.6.repo /etc/yum.repos.d/
-RUN yum install -y mongodb-org
+RUN yum install -y mongodb-org git
 RUN yum install -y php-pear gcc gcc-c++ make openssl-devel
-COPY mongodb-1.3.0.tgz /usr/lib/mongodb-1.3.0.tgz
-RUN cd /usr/lib; tar -xvf mongodb-1.3.0.tgz
-RUN cd /usr/lib/mongodb-1.3.0 && phpize
-RUN cd /usr/lib/mongodb-1.3.0 && ./configure --enable-mongodb
-RUN cd /usr/lib/mongodb-1.3.0 && make && make install
+WORKDIR /usr/share/mxs-lib
+RUN git clone https://github.com/william9527/mongo-php-driver.git
+WORKDIR /usr/share/mxs-lib/mongo-php-driver
+RUN git checkout 1.3.0
+RUN git submodule init
+RUN git submodule update
+RUN phpize
+RUN ./configure --enable-mongodb
+RUN make && make install
 RUN echo 'extension=mongodb.so' >> /etc/php.d/json.ini
 RUN pecl channel-update pecl.php.net
 RUN yum install -y GeoIP-devel java-1.8.0-openjdk-devel sshpass sendmail
