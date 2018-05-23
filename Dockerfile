@@ -27,6 +27,19 @@ COPY config/php-fpm.d/* /etc/php-fpm.d/
 COPY config/php.ini /etc/
 COPY phpunit-5.7.phar /usr/bin/phpunit
 RUN chmod a+x /usr/bin/phpunit
+RUN yum install -y mod_security mod_ssl crontabs
+RUN yum install -y httpd-devel libxml2-devel yajl yajl-devel python-pip git
+RUN mkdir -p /tmp/upload_file
+RUN chmod 755 /tmp/upload_file
+RUN chmod 766 /etc/httpd
+RUN touch /etc/httpd/virtualhosts.conf
+RUN chmod 777 /etc/httpd/virtualhosts.conf
+RUN mkdir -p /var/log/rule
+WORKDIR /usr/share
+RUN git clone https://github.com/william9527/ModSecurity.git
+WORKDIR /usr/share/ModSecurity
+RUN git checkout mxs; sh autogen.sh;sh configure;make;make install
+RUN rm /etc/httpd/conf.d/ssl.conf
 RUN yum install -y nginx
 RUN openssl req -subj '/CN=cloudcoffer.com/C=US' -new -newkey rsa:2048 -sha256 -days 365 -nodes -x509 -keyout /etc/nginx/server.key -out /etc/nginx/server.crt
 COPY nginx.conf /etc/nginx/
