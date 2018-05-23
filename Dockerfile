@@ -7,9 +7,9 @@ RUN yum -y groupinstall "Development tools"
 ADD mongodb-org-3.6.repo /etc/yum.repos.d/
 RUN yum install -y mongodb-org git
 RUN yum install -y php-pear gcc gcc-c++ make openssl-devel
-WORKDIR /usr/share/mxs-lib
+WORKDIR /usr/share/
 RUN git clone https://github.com/william9527/mongo-php-driver.git
-WORKDIR /usr/share/mxs-lib/mongo-php-driver
+WORKDIR /usr/share/mongo-php-driver
 RUN git checkout 1.3.0
 RUN git submodule init
 RUN git submodule update
