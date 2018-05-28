@@ -18,7 +18,7 @@ RUN ./configure --enable-mongodb
 RUN make && make install
 RUN echo 'extension=mongodb.so' >> /etc/php.d/json.ini
 RUN pecl channel-update pecl.php.net
-RUN yum install -y GeoIP-devel java-1.8.0-openjdk-devel sshpass sendmail
+RUN yum install -y GeoIP-devel java-1.8.0-openjdk-devel sshpass sendmail sudo
 RUN pecl install geoip
 RUN curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
 RUN yum -y install monit
@@ -44,4 +44,6 @@ RUN yum install -y nginx
 RUN openssl req -subj '/CN=cloudcoffer.com/C=US' -new -newkey rsa:2048 -sha256 -days 365 -nodes -x509 -keyout /etc/nginx/server.key -out /etc/nginx/server.crt
 COPY nginx.conf /etc/nginx/
 RUN chmod -R 777 /var/lib/php/session
+RUN yum install -y clamav
+
 EXPOSE 9995
