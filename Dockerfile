@@ -22,7 +22,7 @@ RUN yum install -y GeoIP-devel java-1.8.0-openjdk-devel sshpass sendmail sudo
 RUN pecl install geoip
 RUN curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
 RUN yum -y install monit
-RUN pip install stix
+RUN pip install stix docker pymongo pyyaml
 COPY config/php-fpm.d/* /etc/php-fpm.d/
 COPY config/php.ini /etc/
 COPY phpunit-5.7.phar /usr/bin/phpunit
