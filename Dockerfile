@@ -45,5 +45,6 @@ RUN openssl req -subj '/CN=cloudcoffer.com/C=US' -new -newkey rsa:2048 -sha256 -
 COPY nginx.conf /etc/nginx/
 RUN chmod -R 777 /var/lib/php/session
 RUN yum install -y clamav
+RUN freshclam
 
 EXPOSE 9995
