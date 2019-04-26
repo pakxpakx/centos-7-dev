@@ -4,7 +4,7 @@ RUN yum install -y epel-release
 RUN rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
 RUN yum install -y python-pip php56w php56w-fpm php56w-devel
 RUN yum -y groupinstall "Development tools"
-ADD mongodb-org-3.6.repo /etc/yum.repos.d/
+ADD config/yum.repos.d/mongodb-org-4.0.repo /etc/yum.repos.d/
 RUN yum install -y mongodb-org git
 RUN yum install -y php-pear gcc gcc-c++ make openssl-devel
 WORKDIR /usr/share/
