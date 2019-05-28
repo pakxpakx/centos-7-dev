@@ -44,7 +44,7 @@ RUN yum install -y nginx
 RUN openssl req -subj '/CN=cloudcoffer.com/C=US' -new -newkey rsa:2048 -sha256 -days 365 -nodes -x509 -keyout /etc/nginx/server.key -out /etc/nginx/server.crt
 COPY nginx.conf /etc/nginx/
 RUN chmod -R 777 /var/lib/php/session
-RUN yum install -y clamav
+RUN yum install -y clamav wireshark
 RUN freshclam
 
 EXPOSE 9995
