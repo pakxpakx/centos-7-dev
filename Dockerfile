@@ -47,4 +47,6 @@ RUN chmod -R 777 /var/lib/php/session
 RUN yum install -y clamav wireshark
 RUN freshclam
 
+RUN pip install idstools
+
 EXPOSE 9995
